@@ -1,8 +1,14 @@
-=========================================
- Watson Streaming Speech to Text Example
-=========================================
+=====================================================
+Keyword Counter using Watson Streaming Speech to Text
+=====================================================
 
-The following is an example of using Watson to real time transcribe
+This program converts speech to text then count
+how many times the keyword or the key sentence
+appears in the speech via IBM Cloud Speech to Text API.
+
+The following is identical to the README of
+`Watson Streaming Speech to Text`_,
+an example of using Watson to real time transcribe
 from Speech to Text using the websockets streaming API.
 
 Installation
@@ -115,4 +121,6 @@ Note: nursery rhymes / poetry probably really push the context fixing
 in terrible directions, but it's the thing that I can repeat over and
 over again as a parent of a young child.
 
+.. _Watson Streaming Speech to Text: https://github.com/ibm-dev/watson-streaming-stt
 .. _Watson STT service: https://console.ng.bluemix.net/catalog/services/speech-to-text/
+
