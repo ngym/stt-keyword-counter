@@ -12,12 +12,13 @@ import os
 import websocket
 import base64
 import json
+import configparser
 
 from transcribe import get_auth, parse_args, on_error, on_open
 
 FINALS = []
 count = 0
-keyword = "you know"
+keyword = None
 
 def on_message(self, msg):
     """Print and 'say' the keyword if the keyword is found in the
@@ -47,8 +48,14 @@ def on_close(ws):
     """Upon close, print the complete and final transcript."""
     transcript = "".join([x['results'][0]['alternatives'][0]['transcript']
                           for x in FINALS])
-    print(transcript)
-    print("%d \"%s\" have been found!!" % (count, keyword))
+    print("Recognized text is '%s'" % transcript)
+    print("%d '%s' have been found!!" % (count, keyword))
+
+def get_keyword():
+    config = configparser.RawConfigParser()
+    config.read('speech.cfg')
+    keyword = config.get('keyword', 'keyword')
+    return keyword
     
 def main():
     # Connect to websocket interfaces
@@ -58,6 +65,8 @@ def main():
         userpass.encode()).decode()
     url = ("wss://stream.watsonplatform.net//speech-to-text/api/v1/recognize"
            "?model=en-US_BroadbandModel")
+    global keyword
+    keyword = get_keyword()
 
     ws = websocket.WebSocketApp(url,
                                 header=headers,

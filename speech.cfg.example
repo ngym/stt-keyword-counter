@@ -1,3 +1,5 @@
 [auth]
 username = <UUID looking thing>
 password = <HASH looking thing>
+[keyword]
+keyword = you know
